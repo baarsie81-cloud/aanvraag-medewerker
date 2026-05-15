@@ -1,78 +1,161 @@
 <!doctype html>
 <html lang="nl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Verlofaanvraag medewerker</title>
-<style>
-:root{--bg:#f5f7fb;--card:#fff;--text:#111827;--muted:#6b7280;--line:#e5e7eb;--blue:#2563eb;--purple:#7c3aed;--green:#15803d;--orange:#d97706;--red:#dc2626;--shadow:0 12px 30px rgba(15,23,42,.08);--radius:20px}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#f8fbff 0%,var(--bg) 100%);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text)}.wrap{max-width:1180px;margin:0 auto;padding:22px}.top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px}h1{margin:0;font-size:32px}.sub{color:var(--muted);margin-top:6px;line-height:1.5}.pill{background:#eef2ff;color:#3730a3;padding:10px 14px;border-radius:999px;font-size:14px;font-weight:800}.tabs{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.tab-btn{border:1px solid var(--line);background:#fff;color:#111827;padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:800}.tab-btn.active{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;border-color:transparent}.panel{display:none}.panel.active{display:block}.grid{display:grid;gap:16px}.two{grid-template-columns:1.1fr .9fr}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.card h2{margin:0 0 14px;font-size:18px}.hero{background:linear-gradient(135deg,#1d4ed8 0%,#7c3aed 100%);color:#fff;border-radius:24px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:16px}.hero h2{margin:0 0 8px;font-size:26px}.hero p{margin:0;color:rgba(255,255,255,.9);line-height:1.5}.form{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.full{grid-column:1/-1}label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}input,select,textarea{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:12px;background:#fff;font-size:14px}textarea{min-height:130px;resize:vertical}button{border:0;background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;padding:12px 16px;border-radius:12px;font-weight:900;cursor:pointer}.btn-secondary{background:linear-gradient(135deg,#0f766e,#0891b2)}.btn-danger{background:linear-gradient(135deg,#b91c1c,#dc2626)}.btn-gray{background:#f3f4f6;color:#111827;border:1px solid var(--line)}.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.list{display:grid;gap:10px}.row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}.row:last-child{border-bottom:0}.tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#f3f4f6;font-size:12px;font-weight:800}.tag.ok{background:#ecfdf5;color:#166534}.tag.bad{background:#fef2f2;color:#991b1b}.tag.info{background:#eff6ff;color:#1d4ed8}.muted{color:var(--muted)}.small{font-size:12px;color:var(--muted)}.empty{color:var(--muted);font-style:italic}.notice{padding:12px 14px;border-radius:14px;background:#fff7ed;color:#9a3412;font-size:13px;line-height:1.45}.info-box,.status-box{padding:12px 14px;border-radius:14px;background:#eff6ff;color:#1e40af;font-size:13px;line-height:1.45}.status-box{background:#f8fafc;border:1px solid var(--line);color:var(--muted)}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:top}th{color:var(--muted);font-weight:800}@media(max-width:900px){.two,.form{grid-template-columns:1fr}h1{font-size:26px}.wrap{padding:14px}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Medewerkersdashboard verlof en overuren</title>
+  <style>
+    :root{--bg:#f5f7fb;--card:#fff;--soft:#f8faff;--text:#172033;--muted:#66718a;--line:#dfe6f2;--blue:#2563eb;--blue2:#1d4ed8;--purple:#7c3aed;--red:#b91c1c;--green:#047857;--shadow:0 18px 46px rgba(23,32,51,.1);--radius:18px}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 0 0,rgba(37,99,235,.15),transparent 34rem),radial-gradient(circle at 100% 0,rgba(124,58,237,.13),transparent 30rem),var(--bg);color:var(--text);line-height:1.5}button,input,textarea{font:inherit}.page{width:min(1120px,calc(100% - 32px));margin:0 auto;padding:32px 0 48px}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch;margin-bottom:24px}.intro,.card{background:rgba(255,255,255,.94);border:1px solid rgba(223,230,242,.95);border-radius:var(--radius);box-shadow:var(--shadow)}.intro{padding:32px;display:flex;flex-direction:column;justify-content:center}.eyebrow{margin:0 0 10px;color:var(--blue2);font-size:.86rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}h1,h2,h3,p{margin-top:0}h1{margin-bottom:12px;font-size:clamp(2rem,5vw,3.4rem);line-height:1.04;letter-spacing:0}h2{margin-bottom:16px;font-size:1.35rem}.lead{margin-bottom:0;color:var(--muted);max-width:62ch;font-size:1.05rem}.card{padding:24px}.login-card{display:flex;flex-direction:column;justify-content:center}.row{display:grid;gap:8px;margin-bottom:16px}label{font-weight:800;color:#26324a}input,textarea{width:100%;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--text);padding:12px 14px;outline:none;transition:border-color .16s,box-shadow .16s}input:focus,textarea:focus{border-color:rgba(37,99,235,.8);box-shadow:0 0 0 4px rgba(37,99,235,.12)}textarea{min-height:110px;resize:vertical}.button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff;padding:12px 18px;font-weight:900;cursor:pointer;box-shadow:0 12px 24px rgba(37,99,235,.22)}.button:hover{transform:translateY(-1px)}.message{display:none;margin-top:14px;border-radius:12px;padding:12px 14px;font-weight:800}.message.show{display:block}.error{background:#fef2f2;color:var(--red);border:1px solid #fecaca}.success{background:#ecfdf5;color:var(--green);border:1px solid #bbf7d0}.info{background:#eef4ff;color:var(--blue2);border:1px solid #bfdbfe}.dashboard{display:none;gap:24px}.dashboard.show{display:grid}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0}.stat{min-height:124px;border:1px solid var(--line);border-radius:16px;background:var(--soft);padding:18px}.stat span{display:block;color:var(--muted);font-size:.9rem;font-weight:800}.stat strong{display:block;margin-top:8px;color:var(--text);font-size:2rem;line-height:1.1}.notice{margin:0;border-left:4px solid var(--purple);border-radius:12px;background:#f3efff;color:#4c1d95;padding:14px 16px;font-weight:800}.request{display:grid;grid-template-columns:minmax(260px,.8fr) minmax(0,1.2fr);gap:24px;align-items:start}.type-list{display:grid;gap:10px}.type-option{position:relative}.type-option input{position:absolute;opacity:0}.type-option label{display:block;border:1px solid var(--line);border-radius:14px;background:#fff;padding:14px 16px;cursor:pointer}.type-option label span{display:block;color:var(--muted);font-weight:500;font-size:.92rem}.type-option input:checked+label{border-color:rgba(37,99,235,.8);background:#eef4ff;box-shadow:0 0 0 4px rgba(37,99,235,.1)}.fields{display:none}.fields.show{display:grid}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.full{grid-column:1/-1}.muted{color:var(--muted)}@media(max-width:860px){.hero,.request{grid-template-columns:1fr}.summary{grid-template-columns:1fr}}@media(max-width:560px){.page{width:min(100% - 24px,1120px);padding:18px 0 32px}.intro,.card{padding:20px;border-radius:14px}.grid{grid-template-columns:1fr}h1{font-size:2.15rem}}
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="top"><div><h1>Verlofaanvraag medewerker</h1><div class="sub">Medewerkers dienen een verlofverzoek in per e-mail. Leidinggevenden kunnen de aanvraag daarna registreren, goedkeuren of afwijzen.</div></div><div class="pill">privacy-modus</div></div>
-  <div class="hero"><h2>Verlof aanvragen zonder personeelsdata op GitHub</h2><p>Deze pagina bewaart geen centrale personeelsdata. Het formulier opent een mailconcept naar beide leidinggevenden.</p></div>
-  <div class="tabs"><button class="tab-btn active" data-tab="aanvraag">Aanvraag</button><button class="tab-btn" data-tab="instellingen">Leidinggevenden</button><button class="tab-btn" data-tab="beoordelen">Beoordelen</button></div>
+  <main class="page">
+    <section class="hero">
+      <div class="intro">
+        <p class="eyebrow">Medewerkersdashboard</p>
+        <h1>Verlof en overuren aanvragen</h1>
+        <p class="lead">Bekijk je persoonlijke saldo met je eigen code en maak daarna een aanvraagmail voor je leidinggevende. Er wordt niets opgeslagen en er wordt geen centrale personeelsdata aangepast.</p>
+      </div>
+      <section class="card login-card" aria-labelledby="loginTitle">
+        <h2 id="loginTitle">Mijn saldo bekijken</h2>
+        <form id="loginForm" novalidate>
+          <div class="row"><label for="codeInput">Vul je persoonlijke code in</label><input id="codeInput" autocomplete="off" placeholder="Bijvoorbeeld TEST001" required></div>
+          <button class="button" type="submit">Toon mijn saldo</button>
+          <div id="loginMessage" class="message" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+    </section>
 
-  <section class="panel active" id="tab-aanvraag">
-    <div class="grid two">
-      <div class="card"><h2>Verlofaanvraag</h2><div class="form">
-        <div><label>Naam medewerker</label><input id="req-name" autocomplete="name"></div>
-        <div><label>E-mailadres medewerker</label><input id="req-email" type="email" autocomplete="email"></div>
-        <div><label>Startdatum</label><input id="req-start" type="date"></div>
-        <div><label>Einddatum</label><input id="req-end" type="date"></div>
-        <div><label>Aantal uren</label><input id="req-hours" type="number" step="0.01"></div>
-        <div><label>Categorie</label><select id="req-category"><option>Vakantie</option><option>Vrije dag</option><option>Bijzonder verlof</option><option>Anders</option></select></div>
-        <div class="full"><label>Toelichting</label><input id="req-note" placeholder="Korte zakelijke toelichting"></div>
-        <div class="full toolbar"><button onclick="sendLeaveRequestMail()">Verlofaanvraag verzenden</button><button class="btn-gray" onclick="resetRequest()">Formulier leegmaken</button></div>
-      </div><div id="mailStatus" class="status-box" style="margin-top:14px"></div></div>
-      <div class="card"><h2>Ontvangers</h2><div id="recipientList" class="list"></div><div class="notice" style="margin-top:14px">Na verzenden opent het mailprogramma. De medewerker moet de mail daar nog definitief versturen.</div></div>
-    </div>
-  </section>
+    <section id="dashboard" class="dashboard" aria-live="polite">
+      <section class="card">
+        <h2>Persoonlijk saldo</h2>
+        <p class="muted" id="employeeName"></p>
+        <div class="summary">
+          <div class="stat"><span>Verlofsaldo</span><strong id="leaveBalance">-</strong><span>uren</span></div>
+          <div class="stat"><span>Overurensaldo</span><strong id="overtimeBalance">-</strong><span>uren</span></div>
+          <div class="stat"><span>Laatst bijgewerkt</span><strong id="updatedAt" style="font-size:1.18rem;line-height:1.35">-</strong></div>
+        </div>
+        <p class="notice">Let op: je saldo is bijgewerkt tot het hierboven genoemde moment. Recente aanvragen kunnen nog niet verwerkt zijn.</p>
+      </section>
 
-  <section class="panel" id="tab-instellingen">
-    <div class="grid two"><div class="card"><h2>E-mailadressen leidinggevenden</h2><div class="form">
-      <div><label>Leidinggevende 1</label><input id="managerEmail1" type="email" placeholder="leidinggevende1@bedrijf.nl" oninput="saveSettings()"></div>
-      <div><label>Leidinggevende 2</label><input id="managerEmail2" type="email" placeholder="leidinggevende2@bedrijf.nl" oninput="saveSettings()"></div>
-      <div class="full toolbar"><button onclick="saveSettings()">E-mailadressen opslaan</button></div>
-    </div><div class="info-box" style="margin-top:14px">Deze adressen worden lokaal in deze browser bewaard. Vul ze in voordat medewerkers de aanvraagpagina gebruiken.</div></div><div class="card"><h2>Status</h2><div id="settingsStatus" class="list"></div></div></div>
-  </section>
+      <section class="request">
+        <section class="card">
+          <h2>Kies aanvraagtype</h2>
+          <div class="type-list">
+            <div class="type-option"><input type="radio" name="requestType" id="typeLeave" value="leave"><label for="typeLeave">Verlof aanvragen <span>Startdatum, einddatum en uren</span></label></div>
+            <div class="type-option"><input type="radio" name="requestType" id="typeTakeOvertime" value="takeOvertime"><label for="typeTakeOvertime">Overuren opnemen <span>Datum en aantal uren</span></label></div>
+            <div class="type-option"><input type="radio" name="requestType" id="typeWorkedOvertime" value="workedOvertime"><label for="typeWorkedOvertime">Overuren gewerkt melden <span>Datum, uren en toelichting</span></label></div>
+          </div>
+        </section>
 
-  <section class="panel" id="tab-beoordelen">
-    <div class="grid two"><div class="card"><h2>Aanvraag registreren uit e-mail</h2><div class="form">
-      <div><label>Naam medewerker</label><input id="m-name"></div><div><label>E-mailadres</label><input id="m-email" type="email"></div>
-      <div><label>Startdatum</label><input id="m-start" type="date"></div><div><label>Einddatum</label><input id="m-end" type="date"></div>
-      <div><label>Uren</label><input id="m-hours" type="number" step="0.01"></div><div><label>Status</label><select id="m-status"><option>Aangevraagd</option><option>Goedgekeurd</option><option>Afgewezen</option></select></div>
-      <div class="full"><label>Opmerking leidinggevende</label><input id="m-note"></div><div class="full toolbar"><button onclick="saveManagerRequest()">Aanvraag opslaan</button><button class="btn-gray" onclick="clearManagerForm()">Leegmaken</button></div>
-    </div></div><div class="card"><h2>Lokale aanvragen</h2><div id="requestTable"></div><div class="notice" style="margin-top:14px">Dit overzicht staat alleen in deze browser. Verwerk definitieve besluiten ook in het centrale verlofdashboard.</div></div></div>
-  </section>
-</div>
-<script>
-const SETTINGS_KEY='aanvraag_medewerker_manager_emails';
-const REQUESTS_KEY='aanvraag_medewerker_local_requests';
-function $(id){return document.getElementById(id)}
-function html(s){return String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
-function num(v){return Number.parseFloat(v||0)||0}
-function emailOk(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v||'').trim())}
-function shortDate(d){if(!d)return'';const x=new Date(d+'T12:00:00');return isNaN(x)?d:x.toLocaleDateString('nl-NL',{day:'2-digit',month:'2-digit',year:'numeric'})}
-function fmtHours(v){const n=Math.round(num(v)*100)/100;return n.toLocaleString('nl-NL',{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2})+' uur'}
-function managerEmails(){return [$('managerEmail1').value.trim(),$('managerEmail2').value.trim()].filter(Boolean)}
-function loadSettings(){try{const e=JSON.parse(localStorage.getItem(SETTINGS_KEY)||'[]');$('managerEmail1').value=e[0]||'';$('managerEmail2').value=e[1]||''}catch(e){}render()}
-function saveSettings(){localStorage.setItem(SETTINGS_KEY,JSON.stringify(managerEmails()));render()}
-function bodyText(){const name=$('req-name').value.trim(),email=$('req-email').value.trim(),start=$('req-start').value,end=$('req-end').value||start,hours=$('req-hours').value,cat=$('req-category').value,note=$('req-note').value.trim();return ['Beste leidinggevenden','','Hierbij dien ik een verlofaanvraag in.','',`Naam medewerker: ${name}`,`E-mailadres medewerker: ${email}`,`Startdatum: ${shortDate(start)}`,`Einddatum: ${shortDate(end)}`,`Aantal uren: ${fmtHours(hours)}`,`Categorie: ${cat}`,`Toelichting: ${note||'-'}`,'','Willen jullie deze aanvraag beoordelen en verwerken in het verlofdashboard?','','Met vriendelijke groet,',name].join('\n')}
-function sendLeaveRequestMail(){const to=managerEmails(),name=$('req-name').value.trim(),email=$('req-email').value.trim(),start=$('req-start').value,end=$('req-end').value,hours=num($('req-hours').value);if(to.length<2)return alert('Vul eerst beide e-mailadressen van de leidinggevenden in.');if(to.some(e=>!emailOk(e)))return alert('Controleer de e-mailadressen van de leidinggevenden.');if(!name)return alert('Vul je naam in.');if(!emailOk(email))return alert('Vul een geldig e-mailadres in.');if(!start)return alert('Vul een startdatum in.');if(end&&end<start)return alert('Einddatum mag niet vóór startdatum liggen.');if(hours<=0)return alert('Vul een positief aantal uren in.');const subject=`Verlofaanvraag ${name} - ${shortDate(start)}`;location.href=`mailto:${to.map(encodeURIComponent).join(',')}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText())}`;$('mailStatus').innerHTML='Je mailprogramma is geopend met beide leidinggevenden als ontvanger.'}
-function resetRequest(){['req-name','req-email','req-start','req-end','req-hours','req-note'].forEach(id=>$(id).value='');$('req-category').value='Vakantie';$('mailStatus').innerHTML=''}
-function requests(){try{return JSON.parse(localStorage.getItem(REQUESTS_KEY)||'[]')}catch(e){return[]}}
-function saveRequests(rows){localStorage.setItem(REQUESTS_KEY,JSON.stringify(rows));render()}
-function saveManagerRequest(){const r={id:'REQ-'+Date.now().toString(36),name:$('m-name').value.trim(),email:$('m-email').value.trim(),start:$('m-start').value,end:$('m-end').value,hours:num($('m-hours').value),status:$('m-status').value,note:$('m-note').value.trim(),at:new Date().toISOString()};if(!r.name)return alert('Vul de naam in.');if(!emailOk(r.email))return alert('Vul een geldig e-mailadres in.');if(!r.start)return alert('Vul de startdatum in.');if(r.end&&r.end<r.start)return alert('Einddatum mag niet vóór startdatum liggen.');if(r.hours<=0)return alert('Vul een positief aantal uren in.');saveRequests([r,...requests()]);clearManagerForm()}
-function clearManagerForm(){['m-name','m-email','m-start','m-end','m-hours','m-note'].forEach(id=>$(id).value='');$('m-status').value='Aangevraagd'}
-function setStatus(id,status){const rows=requests();const r=rows.find(x=>x.id===id);if(r){r.status=status;saveRequests(rows)}}
-function delRequest(id){if(confirm('Aanvraag verwijderen uit dit lokale overzicht?'))saveRequests(requests().filter(r=>r.id!==id))}
-function statusTag(s){return s==='Goedgekeurd'?'<span class="tag ok">Goedgekeurd</span>':s==='Afgewezen'?'<span class="tag bad">Afgewezen</span>':'<span class="tag info">Aangevraagd</span>'}
-function render(){const emails=managerEmails();$('recipientList').innerHTML=emails.length?emails.map((e,i)=>`<div class="row"><div>Leidinggevende ${i+1}</div><strong>${html(e)}</strong></div>`).join(''):'<div class="empty">Nog geen leidinggevenden ingevuld.</div>';$('settingsStatus').innerHTML=`<div class="row"><div>Ontvanger 1</div><strong>${html(emails[0]||'Niet ingevuld')}</strong></div><div class="row"><div>Ontvanger 2</div><strong>${html(emails[1]||'Niet ingevuld')}</strong></div>`;const rows=requests();$('requestTable').innerHTML=rows.length?`<div class="table-wrap"><table><thead><tr><th>Datum</th><th>Medewerker</th><th>Uren</th><th>Status</th><th>Actie</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${shortDate(r.start)}${r.end&&r.end!==r.start?' t/m '+shortDate(r.end):''}</td><td>${html(r.name)}<div class="small">${html(r.email)} ${r.note?'- '+html(r.note):''}</div></td><td>${fmtHours(r.hours)}</td><td>${statusTag(r.status)}</td><td class="toolbar"><button class="btn-secondary" onclick="setStatus('${r.id}','Goedgekeurd')">Akkoord</button><button class="btn-gray" onclick="setStatus('${r.id}','Afgewezen')">Afwijzen</button><button class="btn-danger" onclick="delRequest('${r.id}')">Verwijder</button></td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">Nog geen lokale aanvragen.</div>'}
-document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab-btn').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id==='tab-'+b.dataset.tab));render()}));
-loadSettings();
-</script>
+        <section class="card">
+          <h2>Aanvraaggegevens</h2>
+          <form id="requestForm" novalidate>
+            <div id="emptyFields" class="message info show">Kies eerst een aanvraagtype.</div>
+
+            <div id="leaveFields" class="fields"><div class="grid">
+              <div class="row"><label for="leaveStartDate">Startdatum</label><input id="leaveStartDate" type="date"></div>
+              <div class="row"><label for="leaveEndDate">Einddatum</label><input id="leaveEndDate" type="date"></div>
+              <div class="row"><label for="leaveHours">Aantal uren</label><input id="leaveHours" type="number" min="0" step="0.25" inputmode="decimal"></div>
+              <div class="row full"><label for="leaveNote">Opmerking optioneel</label><textarea id="leaveNote" placeholder="Bijvoorbeeld vakantie"></textarea></div>
+            </div></div>
+
+            <div id="takeOvertimeFields" class="fields"><div class="grid">
+              <div class="row"><label for="takeOvertimeDate">Datum</label><input id="takeOvertimeDate" type="date"></div>
+              <div class="row"><label for="takeOvertimeHours">Aantal uren</label><input id="takeOvertimeHours" type="number" min="0" step="0.25" inputmode="decimal"></div>
+              <div class="row full"><label for="takeOvertimeNote">Opmerking optioneel</label><textarea id="takeOvertimeNote"></textarea></div>
+            </div></div>
+
+            <div id="workedOvertimeFields" class="fields"><div class="grid">
+              <div class="row"><label for="workedOvertimeDate">Datum</label><input id="workedOvertimeDate" type="date"></div>
+              <div class="row"><label for="workedOvertimeHours">Aantal uren</label><input id="workedOvertimeHours" type="number" min="0" step="0.25" inputmode="decimal"></div>
+              <div class="row full"><label for="workedOvertimeNote">Toelichting verplicht</label><textarea id="workedOvertimeNote" placeholder="Beschrijf kort wanneer en waarom de overuren zijn gewerkt"></textarea></div>
+            </div></div>
+
+            <button class="button" type="submit">Open mail om aanvraag te verzenden</button>
+            <div id="requestMessage" class="message" role="status" aria-live="polite"></div>
+          </form>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    (function(){
+      'use strict';
+      var employee=null,currentCode='';
+      var $=function(id){return document.getElementById(id)};
+      var groups={leave:$('leaveFields'),takeOvertime:$('takeOvertimeFields'),workedOvertime:$('workedOvertimeFields')};
+
+      $('loginForm').addEventListener('submit',function(e){e.preventDefault();loadEmployee()});
+      $('requestForm').addEventListener('submit',function(e){e.preventDefault();openMail()});
+      document.querySelectorAll('input[name="requestType"]').forEach(function(input){input.addEventListener('change',showFields)});
+
+      function cleanCode(value){return String(value||'').replace(/\s+/g,'').toUpperCase().replace(/[^A-Z0-9_-]/g,'')}
+      function msg(el,type,text){el.className='message show '+type;el.textContent=text}
+      function clear(el){el.className='message';el.textContent=''}
+      function selectedType(){var item=document.querySelector('input[name="requestType"]:checked');return item?item.value:''}
+      function showFields(){var type=selectedType();Object.keys(groups).forEach(function(key){groups[key].classList.toggle('show',key===type)});$('emptyFields').classList.toggle('show',!type);clear($('requestMessage'))}
+      function numberText(value){return new Intl.NumberFormat('nl-NL',{maximumFractionDigits:2}).format(Number(value))}
+      function dateText(value){var p=String(value||'').split('-');return p.length===3?p[2]+'-'+p[1]+'-'+p[0]:value}
+      function hours(id){var raw=$(id).value;return{raw:raw,number:Number(raw)}}
+      function invalid(text){return{valid:false,message:text}}
+      function valid(values){return{valid:true,values:values}}
+
+      function loadEmployee(){
+        var code=cleanCode($('codeInput').value);$('codeInput').value=code;employee=null;currentCode='';$('dashboard').classList.remove('show');clear($('requestMessage'));
+        if(!code){msg($('loginMessage'),'error','Vul je persoonlijke code in.');return}
+        msg($('loginMessage'),'info','Saldo wordt geladen...');
+        fetch('saldi/saldo-'+code+'.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('Niet gevonden');return r.json()}).then(function(data){
+          validateData(data);employee=data;currentCode=code;renderEmployee(data);msg($('loginMessage'),'success','Je saldo is geladen.');
+        }).catch(function(){employee=null;currentCode='';$('dashboard').classList.remove('show');msg($('loginMessage'),'error','Deze code is niet gevonden. Controleer je persoonlijke code of neem contact op met je leidinggevende.')});
+      }
+
+      function validateData(data){['naam','email','leidinggevendeEmail','verlofsaldo','overurensaldo','laatstBijgewerkt'].forEach(function(field){if(data[field]===undefined||data[field]===null||data[field]==='')throw new Error('Ongeldig saldo-bestand')})}
+      function renderEmployee(data){$('employeeName').textContent=data.naam;$('leaveBalance').textContent=numberText(data.verlofsaldo);$('overtimeBalance').textContent=numberText(data.overurensaldo);$('updatedAt').textContent=data.laatstBijgewerkt;$('dashboard').classList.add('show')}
+
+      function validateRequest(type){
+        if(type==='leave'){
+          var start=$('leaveStartDate').value,end=$('leaveEndDate').value,h=hours('leaveHours'),note=$('leaveNote').value.trim();
+          if(!start||!end)return invalid('Vul de startdatum en einddatum in.');
+          if(!h.raw||h.number<=0)return invalid('Vul een aantal uren groter dan 0 in.');
+          if(end<start)return invalid('De einddatum mag niet voor de startdatum liggen.');
+          return valid({startDate:start,endDate:end,hours:h.raw,note:note});
+        }
+        if(type==='takeOvertime'){
+          var takeDate=$('takeOvertimeDate').value,takeHours=hours('takeOvertimeHours'),takeNote=$('takeOvertimeNote').value.trim();
+          if(!takeDate)return invalid('Vul de datum in.');
+          if(!takeHours.raw||takeHours.number<=0)return invalid('Vul een aantal uren groter dan 0 in.');
+          return valid({date:takeDate,hours:takeHours.raw,note:takeNote});
+        }
+        if(type==='workedOvertime'){
+          var workedDate=$('workedOvertimeDate').value,workedHours=hours('workedOvertimeHours'),workedNote=$('workedOvertimeNote').value.trim();
+          if(!workedDate)return invalid('Vul de datum in.');
+          if(!workedHours.raw||workedHours.number<=0)return invalid('Vul een aantal uren groter dan 0 in.');
+          if(!workedNote)return invalid('Vul een toelichting in voor gewerkte overuren.');
+          return valid({date:workedDate,hours:workedHours.raw,note:workedNote});
+        }
+        return invalid('Kies eerst een aanvraagtype.');
+      }
+
+      function buildMail(type,v){
+        var name=employee.naam,code=employee.code||currentCode;
+        if(type==='leave')return{subject:'Verlofaanvraag - '+name,body:['Nieuwe verlofaanvraag','','Medewerker: '+name,'Code: '+code,'Type: Verlofaanvraag','Startdatum: '+dateText(v.startDate),'Einddatum: '+dateText(v.endDate),'Aantal uren: '+v.hours,'Opmerking: '+(v.note||'-'),'','Let op: deze aanvraag is nog niet goedgekeurd.','De leidinggevende verwerkt deze aanvraag in het verlofdashboard.'].join('\n')};
+        if(type==='takeOvertime')return{subject:'Aanvraag overuren opnemen - '+name,body:['Aanvraag overuren opnemen','','Medewerker: '+name,'Code: '+code,'Datum: '+dateText(v.date),'Aantal uren: '+v.hours,'Opmerking: '+(v.note||'-'),'','Let op: deze aanvraag is nog niet goedgekeurd.','De leidinggevende verwerkt deze aanvraag in het verlofdashboard.'].join('\n')};
+        return{subject:'Overuren melding - '+name,body:['Nieuwe overurenmelding','','Medewerker: '+name,'Code: '+code,'Datum: '+dateText(v.date),'Aantal uren: '+v.hours,'Toelichting: '+v.note,'','Let op: deze overuren zijn nog niet geaccordeerd.','De leidinggevende verwerkt deze melding in het verlofdashboard.'].join('\n')};
+      }
+
+      function openMail(){
+        clear($('requestMessage'));
+        if(!employee){msg($('requestMessage'),'error','Log eerst in met je persoonlijke code.');return}
+        var type=selectedType();if(!type){msg($('requestMessage'),'error','Kies eerst een aanvraagtype.');return}
+        var check=validateRequest(type);if(!check.valid){msg($('requestMessage'),'error',check.message);return}
+        var mail=buildMail(type,check.values);
+        window.location.href='mailto:'+encodeURIComponent(employee.leidinggevendeEmail)+'?cc='+encodeURIComponent(employee.email)+'&subject='+encodeURIComponent(mail.subject)+'&body='+encodeURIComponent(mail.body);
+        msg($('requestMessage'),'success','Je mailprogramma is geopend. Controleer de mail en klik zelf op verzenden. Pas daarna is je aanvraag ingediend.');
+      }
+    })();
+  </script>
 </body>
 </html>
