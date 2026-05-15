@@ -1,0 +1,9 @@
+{
+  "code": "TEST001",
+  "naam": "Test Medewerker",
+  "email": "testmedewerker@example.com",
+  "leidinggevendeEmail": "leidinggevende@example.com",
+  "verlofsaldo": 120,
+  "overurensaldo": 8,
+  "laatstBijgewerkt": "2026-05-15 16:30"
+}
